@@ -11,9 +11,8 @@ GPIO.setup(11, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 GPIO.setup(13, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 camera = PiCamera()
 date = datetime.datetime.now().strftime('%m-%d-%Y_%H-%M-%S')
-
-try:
-    while True:
+    
+while True:
         if GPIO.input(11) == GPIO.HIGH:
              camera.start_preview()
              camera.start_recording('/home/pi/Documents/video'+datetime.datetime.now().strftime('%y-%m-%d%H:%M:%S')+'.264')
@@ -23,5 +22,4 @@ try:
             GPIO.input(13) == GPIO.HIGH:
                 camera.stop_preview()
                 camera.stop_recording()
-finally:
-    GPIO.cleanup()
+GPIO.cleanup()
